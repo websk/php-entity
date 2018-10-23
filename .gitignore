@@ -1,0 +1,7 @@
+.idea/
+var/logs/*
+!var/logs/.gitkeep
+vendor/
+config/config.php
+var/docker/.env
+node_modules
