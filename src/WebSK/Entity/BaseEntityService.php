@@ -42,11 +42,11 @@ abstract class BaseEntityService implements
     }
 
     /**
-     * @param $entity_class_name
-     * @param $entity_id
+     * @param string $entity_class_name
+     * @param int $entity_id
      * @return string
      */
-    protected static function getEntityObjectCacheId($entity_class_name, $entity_id)
+    protected static function getEntityObjectCacheId(string $entity_class_name, int $entity_id)
     {
         return $entity_class_name . '::' . $entity_id;
     }
@@ -82,12 +82,12 @@ abstract class BaseEntityService implements
     }
 
     /**
-     * @param $entity_id
+     * @param int|null $entity_id
      * @param bool $exception_if_not_loaded
      * @return InterfaceEntity
      * @throws \Exception
      */
-    public function getById($entity_id, $exception_if_not_loaded = true)
+    public function getById(?int $entity_id, bool $exception_if_not_loaded = true)
     {
         $cache_key = self::getEntityObjectCacheId($this->entity_class_name, $entity_id);
 
@@ -119,9 +119,9 @@ abstract class BaseEntityService implements
     }
 
     /**
-     * @param $entity_id
+     * @param int $entity_id
      */
-    public function removeObjFromCacheById($entity_id)
+    public function removeObjFromCacheById(int $entity_id)
     {
         $cache_key = self::getEntityObjectCacheId($this->entity_class_name, $entity_id);
 
@@ -134,7 +134,7 @@ abstract class BaseEntityService implements
      * @param InterfaceEntity $entity_obj
      * @throws \Exception
      */
-    public function removeFromCache($entity_obj)
+    public function removeFromCache(InterfaceEntity $entity_obj)
     {
         if (!($entity_obj instanceof InterfaceEntity)) {
             throw new \Exception('Entity class must provide method getId');
@@ -185,7 +185,7 @@ abstract class BaseEntityService implements
      * сохранением.
      * @param InterfaceEntity $entity_obj
      */
-    public function beforeSave($entity_obj)
+    public function beforeSave(InterfaceEntity $entity_obj)
     {
     }
 
@@ -195,7 +195,7 @@ abstract class BaseEntityService implements
      * @param InterfaceEntity $entity_obj
      * @throws \Exception
      */
-    public function save($entity_obj)
+    public function save(InterfaceEntity $entity_obj)
     {
         $transaction_is_my = false;
         if (!$this->repository->inTransaction()) {
@@ -241,7 +241,7 @@ abstract class BaseEntityService implements
      * Не забыть в переопределенном методе сбросить кэш!
      * @param InterfaceEntity $entity_obj
      */
-    public function afterSave($entity_obj)
+    public function afterSave(InterfaceEntity $entity_obj)
     {
         $this->removeFromCache($entity_obj);
 
@@ -257,7 +257,7 @@ abstract class BaseEntityService implements
      * @param $message
      * @return bool
      */
-    public function canDelete($entity_obj, &$message)
+    public function canDelete(InterfaceEntity $entity_obj, string &$message)
     {
         return true;
     }
@@ -268,7 +268,7 @@ abstract class BaseEntityService implements
      * @param InterfaceEntity $entity_obj
      * @throws \Exception
      */
-    public function delete($entity_obj)
+    public function delete(InterfaceEntity $entity_obj)
     {
         $transaction_is_my = false;
         if (!$this->inTransaction()) {
@@ -304,10 +304,10 @@ abstract class BaseEntityService implements
     }
 
     /**
-     * @param mixed $entity_id
+     * @param int $entity_id
      * @throws \Exception
      */
-    public function deleteById($entity_id)
+    public function deleteById(int $entity_id)
     {
         $entity_obj = $this->getById($entity_id);
         $this->delete($entity_obj);
@@ -320,7 +320,7 @@ abstract class BaseEntityService implements
      * - не быть статическим: работает в контексте конкретного объекта
      * @param InterfaceEntity $entity_obj
      */
-    public function afterDelete($entity_obj)
+    public function afterDelete(InterfaceEntity $entity_obj)
     {
         $this->removeFromCache($entity_obj);
 

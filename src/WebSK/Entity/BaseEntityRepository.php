@@ -91,7 +91,7 @@ abstract class BaseEntityRepository implements
      * @return array
      * @throws \Exception
      */
-    public function getAllIdsArrByCreatedAtDesc($offset = 0, $page_size = 30): array
+    public function getAllIdsArrByCreatedAtDesc(int $offset = 0, int $page_size = 30): array
     {
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();
@@ -125,11 +125,11 @@ abstract class BaseEntityRepository implements
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return null|object
      * @throws \Exception
      */
-    public function find($id)
+    public function find(int $id)
     {
         $this->exceptionIfClassIsIncompatibleWithBaseEntityRepository();
 
@@ -292,11 +292,11 @@ abstract class BaseEntityRepository implements
     }
 
     /**
-     * @param $fields_to_save_arr
+     * @param array $fields_to_save_arr
      * @return string
      * @throws \Exception
      */
-    protected function insertRecord($fields_to_save_arr)
+    protected function insertRecord(array $fields_to_save_arr)
     {
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();
@@ -322,11 +322,11 @@ abstract class BaseEntityRepository implements
     }
 
     /**
-     * @param $fields_to_save_arr
-     * @param $entity_id_value
+     * @param array $fields_to_save_arr
+     * @param int $entity_id_value
      * @throws \Exception
      */
-    protected function updateRecord($fields_to_save_arr, $entity_id_value)
+    protected function updateRecord(array $fields_to_save_arr, int $entity_id_value)
     {
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();

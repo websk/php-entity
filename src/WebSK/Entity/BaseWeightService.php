@@ -2,6 +2,10 @@
 
 namespace WebSK\Entity;
 
+/**
+ * Class BaseWeightService
+ * @package WebSK\Entity
+ */
 class BaseWeightService extends BaseEntityService
 {
     /** @var BaseWeightRepository */

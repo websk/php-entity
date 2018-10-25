@@ -12,9 +12,9 @@ interface InterfaceEntityRepository
      * - принимает один параметр: идентификатор объекта
      * - заполняет поля объекта
      * - возвращает объект если все нормально, null - если не получилось загрузить объект (нет в БД и т.п.)
-     * @param $id
+     * @param int $id
      */
-    public function find($id);
+    public function find(int $id);
 
     /**
      * @param InterfaceEntity $entity_obj

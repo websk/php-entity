@@ -4,6 +4,10 @@ namespace WebSK\Entity;
 
 use Websk\Utils\Sanitize;
 
+/**
+ * Class BaseWeightRepository
+ * @package WebSK\Entity
+ */
 class BaseWeightRepository extends BaseEntityRepository
 {
     /**

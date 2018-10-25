@@ -11,9 +11,20 @@ namespace WebSK\Entity;
  */
 interface InterfaceEntityService
 {
-    public function getById($entity_id, $exception_if_not_loaded = true);
+    /**
+     * @param int|null $entity_id
+     * @param bool $exception_if_not_loaded
+     * @return InterfaceEntity|null
+     */
+    public function getById(?int $entity_id, bool $exception_if_not_loaded = true);
 
-    public function removeObjFromCacheById($entity_id);
+    /**
+     * @param int $entity_id
+     */
+    public function removeObjFromCacheById(int $entity_id);
 
-    public function removeFromCache($entity_obj);
+    /**
+     * @param InterfaceEntity $entity_obj
+     */
+    public function removeFromCache(InterfaceEntity $entity_obj);
 }

@@ -2,6 +2,10 @@
 
 namespace WebSK\Entity;
 
+/**
+ * Class BaseEntity
+ * @package WebSK\Entity
+ */
 abstract class BaseEntity implements
     InterfaceEntity
 {

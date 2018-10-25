@@ -10,9 +10,20 @@ namespace WebSK\Entity;
  */
 interface InterfaceDelete
 {
-    public function canDelete($entity_obj, &$message);
+    /**
+     * @param InterfaceEntity $entity_obj
+     * @param string $message
+     * @return bool
+     */
+    public function canDelete(InterfaceEntity $entity_obj, string &$message);
 
-    public function delete($entity_obj);
+    /**
+     * @param InterfaceEntity $entity_obj
+     */
+    public function delete(InterfaceEntity $entity_obj);
 
-    public function afterDelete($entity_obj);
+    /**
+     * @param InterfaceEntity $entity_obj
+     */
+    public function afterDelete(InterfaceEntity $entity_obj);
 }

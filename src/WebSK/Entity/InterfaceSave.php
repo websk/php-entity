@@ -12,9 +12,18 @@ namespace WebSK\Entity;
  */
 interface InterfaceSave
 {
-    public function beforeSave($entity_obj);
+    /**
+     * @param InterfaceEntity $entity_obj
+     */
+    public function beforeSave(InterfaceEntity  $entity_obj);
 
-    public function save($entity_obj);
+    /**
+     * @param InterfaceEntity $entity_obj
+     */
+    public function save(InterfaceEntity $entity_obj);
 
-    public function afterSave($entity_obj);
+    /**
+     * @param InterfaceEntity $entity_obj
+     */
+    public function afterSave(InterfaceEntity $entity_obj);
 }
