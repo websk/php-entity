@@ -66,7 +66,7 @@ abstract class BaseEntityRepository implements
      * @return string
      * @throws \Exception
      */
-    protected function getTableName()
+    public function getTableName()
     {
         $this->exceptionIfClassIsIncompatibleWithBaseEntityRepository();
 
@@ -76,7 +76,7 @@ abstract class BaseEntityRepository implements
     /**
      * @return string
      */
-    protected function getIdFieldName()
+    public function getIdFieldName()
     {
         if (defined($this->entity_class_name . '::DB_ID_FIELD_NAME')) {
             return $this->entity_class_name::DB_ID_FIELD_NAME;
