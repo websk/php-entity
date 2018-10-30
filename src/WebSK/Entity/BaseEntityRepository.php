@@ -63,7 +63,7 @@ abstract class BaseEntityRepository implements
     }
 
     /**
-     * @return mixed
+     * @return string
      * @throws \Exception
      */
     protected function getTableName()
