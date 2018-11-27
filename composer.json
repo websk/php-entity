@@ -2,7 +2,7 @@
   "name": "websk/php-entity",
   "require": {
     "ext-pdo": "*",
-    "websk/php-cache": "1.1",
+    "websk/php-cache": "dev-master",
     "websk/php-db": "1.2",
     "websk/php-utils": "dev-master"
   },
