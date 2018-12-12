@@ -2,7 +2,7 @@
 
 namespace WebSK\Entity;
 
-use Websk\Utils\Sanitize;
+use WebSK\Utils\Sanitize;
 use WebSK\DB\DBService;
 
 /**

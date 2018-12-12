@@ -2,8 +2,8 @@
 
 namespace WebSK\Entity;
 
-use Websk\Utils\Assert;
-use Websk\Utils\FullObjectId;
+use WebSK\Utils\Assert;
+use WebSK\Utils\FullObjectId;
 use WebSK\Cache\CacheService;
 
 /**

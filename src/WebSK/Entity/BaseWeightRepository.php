@@ -2,7 +2,7 @@
 
 namespace WebSK\Entity;
 
-use Websk\Utils\Sanitize;
+use WebSK\Utils\Sanitize;
 
 /**
  * Class BaseWeightRepository
