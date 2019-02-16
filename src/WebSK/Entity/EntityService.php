@@ -105,7 +105,7 @@ abstract class EntityService implements
             return $cached_obj;
         }
 
-        $entity_obj = $this->repository->find($entity_id);
+        $entity_obj = $this->repository->findById($entity_id);
 
         if (!$entity_obj) {
             if ($exception_if_not_loaded) {

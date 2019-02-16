@@ -14,7 +14,7 @@ interface InterfaceEntityRepository
      * - возвращает объект если все нормально, null - если не получилось загрузить объект (нет в БД и т.п.)
      * @param int $id
      */
-    public function find(int $id);
+    public function findById(int $id);
 
     /**
      * @param InterfaceEntity $entity_obj

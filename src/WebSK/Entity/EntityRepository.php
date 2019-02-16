@@ -129,7 +129,7 @@ abstract class EntityRepository implements
      * @return null|object
      * @throws \Exception
      */
-    public function find(int $id)
+    public function findById(int $id)
     {
         $this->exceptionIfClassIsIncompatibleWithEntityRepository();
 
