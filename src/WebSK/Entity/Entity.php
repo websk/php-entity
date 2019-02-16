@@ -3,10 +3,10 @@
 namespace WebSK\Entity;
 
 /**
- * Class BaseEntity
+ * Class Entity
  * @package WebSK\Entity
  */
-abstract class BaseEntity implements
+abstract class Entity implements
     InterfaceEntity
 {
     use ProtectPropertiesTrait;

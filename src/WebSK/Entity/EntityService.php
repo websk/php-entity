@@ -7,10 +7,10 @@ use WebSK\Utils\FullObjectId;
 use WebSK\Cache\CacheService;
 
 /**
- * Class BaseEntityService
+ * Class EntityService
  * @package WebSK\Entity
  */
-abstract class BaseEntityService implements
+abstract class EntityService implements
     InterfaceEntityService,
     InterfaceSave,
     InterfaceDelete
@@ -20,25 +20,33 @@ abstract class BaseEntityService implements
 
     /** @var string */
     protected $entity_class_name;
-    /** @var BaseEntityRepository */
+    /** @var EntityRepository */
     protected $repository;
     /** @var CacheService */
     protected $cache_service;
 
     /**
-     * BaseEntityService constructor.
+     * EntityService constructor.
      * @param string $entity_class_name
-     * @param BaseEntityRepository $repository
+     * @param EntityRepository $repository
      * @param CacheService $cache_service
      */
     public function __construct(
         string $entity_class_name,
-        BaseEntityRepository $repository,
+        EntityRepository $repository,
         CacheService $cache_service
     ) {
         $this->entity_class_name = $entity_class_name;
         $this->repository = $repository;
         $this->cache_service = $cache_service;
+    }
+
+    /**
+     * @return int
+     */
+    protected function getCacheTtlSeconds()
+    {
+        return self::DEFAULT_CACHE_TTL_SEC;
     }
 
     /**
@@ -66,7 +74,7 @@ abstract class BaseEntityService implements
 
         $ids_arr = $this->repository->getAllIdsArrByIdAsc();
 
-        $cache_ttl_seconds = self::DEFAULT_CACHE_TTL_SEC;
+        $cache_ttl_seconds = $this->getCacheTtlSeconds();
 
         $this->cache_service->set($cache_key, $ids_arr, $cache_ttl_seconds);
 
@@ -107,11 +115,7 @@ abstract class BaseEntityService implements
         }
 
         // store to cache
-        $cache_ttl_seconds = self::DEFAULT_CACHE_TTL_SEC;
-
-        if ($entity_obj instanceof InterfaceCacheTtlSeconds) {
-            $cache_ttl_seconds = $entity_obj->getCacheTtlSeconds();
-        }
+        $cache_ttl_seconds = $this->getCacheTtlSeconds();
 
         $this->cache_service->set($cache_key, $entity_obj, $cache_ttl_seconds);
 

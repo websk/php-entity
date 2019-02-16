@@ -3,12 +3,12 @@
 namespace WebSK\Entity;
 
 /**
- * Class BaseWeightService
+ * Class WeightService
  * @package WebSK\Entity
  */
-class BaseWeightService extends BaseEntityService
+class WeightService extends EntityService
 {
-    /** @var BaseWeightRepository */
+    /** @var WeightRepository */
     protected $repository;
 
     /**

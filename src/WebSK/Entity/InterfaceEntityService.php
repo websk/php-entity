@@ -7,7 +7,7 @@ namespace WebSK\Entity;
  * @package WebSK\Entity
  * Поддержка классом этого интерфейса означает, что сервис умеет создавать экземпляры сущности по ID,
  * кэшировать их и сбрасывать кэш при изменениях.
- * Базовая реализация есть в BaseEntityService.
+ * Базовая реализация есть в EntityService.
  */
 interface InterfaceEntityService
 {

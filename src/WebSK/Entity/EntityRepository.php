@@ -6,7 +6,7 @@ use WebSK\Utils\Sanitize;
 use WebSK\DB\DBService;
 
 /**
- * Для работы с BaseEntityRepository необходимо:
+ * Для работы с EntityRepository необходимо:
  *
  * 1. создаем таблицу в БД с полем "id" (auto increment) и прочими нужными полями
  * 2. создаем класс для сущности:
@@ -17,11 +17,11 @@ use WebSK\DB\DBService;
  *      - подключаем трейты:
  *          - ProtectPropertiesTrait
  *      - пишем необходимые геттеры и сеттеры
- * 3. Создаем репозиторий для сущности, наследуем его от BaseEntityRepository:
+ * 3. Создаем репозиторий для сущности, наследуем его от EntityRepository:
  *      - при необходимости, переопределяем методы
  *      - в классе сущности указываем константу ENTITY_REPOSITORY_CONTAINER_ID - идентификатор зарегистрированного контейнера данного репозитория
  */
-abstract class BaseEntityRepository implements
+abstract class EntityRepository implements
     InterfaceEntityRepository
 {
 
@@ -43,14 +43,14 @@ abstract class BaseEntityRepository implements
      * Если что-то не так - выбрасывает исключение.
      * @throws \Exception
      */
-    protected function exceptionIfClassIsIncompatibleWithBaseEntityRepository()
+    protected function exceptionIfClassIsIncompatibleWithEntityRepository()
     {
         if (!defined($this->entity_class_name . '::DB_TABLE_NAME')) {
-            throw new \Exception('class must provide DB_TABLE_NAME constant to use BaseEntityRepository');
+            throw new \Exception('class must provide DB_TABLE_NAME constant to use EntityRepository');
         }
 
         if (!defined($this->entity_class_name . '::ENTITY_REPOSITORY_CONTAINER_ID')) {
-            throw new \Exception('class must provide ENTITY_REPOSITORY_CONTAINER_ID constant to use BaseEntityRepository');
+            throw new \Exception('class must provide ENTITY_REPOSITORY_CONTAINER_ID constant to use EntityRepository');
         }
     }
 
@@ -68,7 +68,7 @@ abstract class BaseEntityRepository implements
      */
     public function getTableName()
     {
-        $this->exceptionIfClassIsIncompatibleWithBaseEntityRepository();
+        $this->exceptionIfClassIsIncompatibleWithEntityRepository();
 
         return $this->entity_class_name::DB_TABLE_NAME;
     }
@@ -131,7 +131,7 @@ abstract class BaseEntityRepository implements
      */
     public function find(int $id)
     {
-        $this->exceptionIfClassIsIncompatibleWithBaseEntityRepository();
+        $this->exceptionIfClassIsIncompatibleWithEntityRepository();
 
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();
@@ -212,7 +212,7 @@ abstract class BaseEntityRepository implements
      */
     public function save(InterfaceEntity $entity_obj)
     {
-        $this->exceptionIfClassIsIncompatibleWithBaseEntityRepository();
+        $this->exceptionIfClassIsIncompatibleWithEntityRepository();
 
         $db_table_name = $this->getTableName();
 
@@ -268,7 +268,7 @@ abstract class BaseEntityRepository implements
      */
     public function delete(InterfaceEntity $entity_obj)
     {
-        $this->exceptionIfClassIsIncompatibleWithBaseEntityRepository();
+        $this->exceptionIfClassIsIncompatibleWithEntityRepository();
 
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();

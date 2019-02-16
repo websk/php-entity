@@ -5,10 +5,10 @@ namespace WebSK\Entity;
 use WebSK\Utils\Sanitize;
 
 /**
- * Class BaseWeightRepository
+ * Class WeightRepository
  * @package WebSK\Entity
  */
-class BaseWeightRepository extends BaseEntityRepository
+class WeightRepository extends EntityRepository
 {
     /**
      * Возвращает максимальный вес в указанном контексте (т.е. для набора пар поле - значение)
