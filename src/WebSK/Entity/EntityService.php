@@ -92,11 +92,15 @@ abstract class EntityService implements
     /**
      * @param int|null $entity_id
      * @param bool $exception_if_not_loaded
-     * @return InterfaceEntity
+     * @return null|InterfaceEntity
      * @throws \Exception
      */
     public function getById(?int $entity_id, bool $exception_if_not_loaded = true)
     {
+        if (is_null($entity_id)) {
+            return null;
+        }
+
         $cache_key = self::getEntityObjectCacheId($this->entity_class_name, $entity_id);
 
         $cached_obj = $this->cache_service->get($cache_key);

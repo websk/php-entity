@@ -126,7 +126,7 @@ abstract class EntityRepository implements
 
     /**
      * @param int $id
-     * @return null|object
+     * @return null|InterfaceEntity
      * @throws \Exception
      */
     public function findById(int $id)
