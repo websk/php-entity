@@ -51,10 +51,10 @@ abstract class EntityService implements
 
     /**
      * @param string $entity_class_name
-     * @param int $entity_id
+     * @param null|int $entity_id
      * @return string
      */
-    protected static function getEntityObjectCacheId(string $entity_class_name, int $entity_id)
+    protected static function getEntityObjectCacheId(string $entity_class_name, ?int $entity_id)
     {
         return $entity_class_name . '::' . $entity_id;
     }
