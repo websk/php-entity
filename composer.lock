@@ -1,42 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb158fbc0debf598a63373ea29c879c0",
+    "content-hash": "e0f962a515a2f6cd201b664a364a3583",
     "packages": [
-        {
-            "name": "container-interop/container-interop",
-            "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/container-interop/container-interop.git",
-                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/container-interop/container-interop/zipball/79cbf1341c22ec75643d841642dd5d6acd83bdb8",
-                "reference": "79cbf1341c22ec75643d841642dd5d6acd83bdb8",
-                "shasum": ""
-            },
-            "require": {
-                "psr/container": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Interop\\Container\\": "src/Interop/Container/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
-            "homepage": "https://github.com/container-interop/container-interop",
-            "time": "2017-02-14T19:40:03+00:00"
-        },
         {
             "name": "nikic/fast-route",
             "version": "v1.3.0",
@@ -81,33 +50,37 @@
                 "router",
                 "routing"
             ],
+            "support": {
+                "issues": "https://github.com/nikic/FastRoute/issues",
+                "source": "https://github.com/nikic/FastRoute/tree/master"
+            },
             "time": "2018-02-13T20:26:39+00:00"
         },
         {
             "name": "pimple/pimple",
-            "version": "v3.2.3",
+            "version": "v3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32"
+                "reference": "21e45061c3429b1e06233475cc0e1f6fc774d5b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/9e403941ef9d65d20cba7d54e29fe906db42cf32",
-                "reference": "9e403941ef9d65d20cba7d54e29fe906db42cf32",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/21e45061c3429b1e06233475cc0e1f6fc774d5b0",
+                "reference": "21e45061c3429b1e06233475cc0e1f6fc774d5b0",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0",
+                "php": ">=7.2.5",
                 "psr/container": "^1.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^3.2"
+                "symfony/phpunit-bridge": "^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2.x-dev"
+                    "dev-master": "3.3.x-dev"
                 }
             },
             "autoload": {
@@ -126,31 +99,35 @@
                 }
             ],
             "description": "Pimple, a simple Dependency Injection Container",
-            "homepage": "http://pimple.sensiolabs.org",
+            "homepage": "https://pimple.symfony.com",
             "keywords": [
                 "container",
                 "dependency injection"
             ],
-            "time": "2018-01-21T07:42:36+00:00"
+            "support": {
+                "source": "https://github.com/silexphp/Pimple/tree/v3.3.1"
+            },
+            "time": "2020-11-24T20:35:42+00:00"
         },
         {
             "name": "predis/predis",
-            "version": "v1.1.1",
+            "version": "v1.1.6",
             "source": {
                 "type": "git",
-                "url": "https://github.com/nrk/predis.git",
-                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
+                "url": "https://github.com/predis/predis.git",
+                "reference": "9930e933c67446962997b05201c69c2319bf26de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
-                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "url": "https://api.github.com/repos/predis/predis/zipball/9930e933c67446962997b05201c69c2319bf26de",
+                "reference": "9930e933c67446962997b05201c69c2319bf26de",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
             "require-dev": {
+                "cweagans/composer-patches": "^1.6",
                 "phpunit/phpunit": "~4.8"
             },
             "suggest": {
@@ -158,6 +135,18 @@
                 "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
             },
             "type": "library",
+            "extra": {
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "phpunit/phpunit-mock-objects": {
+                        "Fix PHP 7 and 8 compatibility": "./tests/phpunit_mock_objects.patch"
+                    },
+                    "phpunit/phpunit": {
+                        "Fix PHP 7 compatibility": "./tests/phpunit_php7.patch",
+                        "Fix PHP 8 compatibility": "./tests/phpunit_php8.patch"
+                    }
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Predis\\": "src/"
@@ -171,17 +160,33 @@
                 {
                     "name": "Daniele Alessandri",
                     "email": "suppakilla@gmail.com",
-                    "homepage": "http://clorophilla.net"
+                    "homepage": "http://clorophilla.net",
+                    "role": "Creator & Maintainer"
+                },
+                {
+                    "name": "Till Krüss",
+                    "homepage": "https://till.im",
+                    "role": "Maintainer"
                 }
             ],
             "description": "Flexible and feature-complete Redis client for PHP and HHVM",
-            "homepage": "http://github.com/nrk/predis",
+            "homepage": "http://github.com/predis/predis",
             "keywords": [
                 "nosql",
                 "predis",
                 "redis"
             ],
-            "time": "2016-06-16T16:22:20+00:00"
+            "support": {
+                "issues": "https://github.com/predis/predis/issues",
+                "source": "https://github.com/predis/predis/tree/v1.1.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/tillkruss",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-11T19:18:05+00:00"
         },
         {
             "name": "psr/container",
@@ -230,6 +235,10 @@
                 "container-interop",
                 "psr"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig/container/issues",
+                "source": "https://github.com/php-fig/container/tree/master"
+            },
             "time": "2017-02-14T16:28:37+00:00"
         },
         {
@@ -280,20 +289,23 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/master"
+            },
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
             "name": "slim/php-view",
-            "version": "2.2.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/PHP-View.git",
-                "reference": "122ed121a8d9cf91a94020814d2a3ee6c836754f"
+                "reference": "a13ada9d7962ca1b48799c0d9ffbca4c33245aed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/PHP-View/zipball/122ed121a8d9cf91a94020814d2a3ee6c836754f",
-                "reference": "122ed121a8d9cf91a94020814d2a3ee6c836754f",
+                "url": "https://api.github.com/repos/slimphp/PHP-View/zipball/a13ada9d7962ca1b48799c0d9ffbca4c33245aed",
+                "reference": "a13ada9d7962ca1b48799c0d9ffbca4c33245aed",
                 "shasum": ""
             },
             "require": {
@@ -329,24 +341,30 @@
                 "template",
                 "view"
             ],
-            "time": "2016-10-11T07:43:08+00:00"
+            "support": {
+                "issues": "https://github.com/slimphp/PHP-View/issues",
+                "source": "https://github.com/slimphp/PHP-View/tree/2.2.1"
+            },
+            "time": "2019-04-15T20:43:28+00:00"
         },
         {
             "name": "slim/slim",
-            "version": "3.11.0",
+            "version": "3.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "d378e70431e78ee92ee32ddde61ecc72edf5dc0a"
+                "reference": "1c9318a84ffb890900901136d620b4f03a59da38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/d378e70431e78ee92ee32ddde61ecc72edf5dc0a",
-                "reference": "d378e70431e78ee92ee32ddde61ecc72edf5dc0a",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/1c9318a84ffb890900901136d620b4f03a59da38",
+                "reference": "1c9318a84ffb890900901136d620b4f03a59da38",
                 "shasum": ""
             },
             "require": {
-                "container-interop/container-interop": "^1.2",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-simplexml": "*",
                 "nikic/fast-route": "^1.0",
                 "php": ">=5.5.0",
                 "pimple/pimple": "^3.0",
@@ -372,24 +390,24 @@
             ],
             "authors": [
                 {
-                    "name": "Rob Allen",
-                    "email": "rob@akrabat.com",
-                    "homepage": "http://akrabat.com"
-                },
-                {
                     "name": "Josh Lockhart",
                     "email": "hello@joshlockhart.com",
                     "homepage": "https://joshlockhart.com"
                 },
                 {
-                    "name": "Gabriel Manricks",
-                    "email": "gmanricks@me.com",
-                    "homepage": "http://gabrielmanricks.com"
-                },
-                {
                     "name": "Andrew Smith",
                     "email": "a.smith@silentworks.co.uk",
                     "homepage": "http://silentworks.co.uk"
+                },
+                {
+                    "name": "Rob Allen",
+                    "email": "rob@akrabat.com",
+                    "homepage": "http://akrabat.com"
+                },
+                {
+                    "name": "Gabriel Manricks",
+                    "email": "gmanricks@me.com",
+                    "homepage": "http://gabrielmanricks.com"
                 }
             ],
             "description": "Slim is a PHP micro framework that helps you quickly write simple yet powerful web applications and APIs",
@@ -400,7 +418,11 @@
                 "micro",
                 "router"
             ],
-            "time": "2018-09-16T10:54:21+00:00"
+            "support": {
+                "issues": "https://github.com/slimphp/Slim/issues",
+                "source": "https://github.com/slimphp/Slim/tree/3.x"
+            },
+            "time": "2019-11-28T17:40:33+00:00"
         },
         {
             "name": "websk/php-cache",
@@ -429,6 +451,10 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "support": {
+                "issues": "https://github.com/websk/php-cache/issues",
+                "source": "https://github.com/websk/php-cache/tree/master"
+            },
             "time": "2018-12-12T10:48:47+00:00"
         },
         {
@@ -454,24 +480,29 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "PHP configs wrapper",
             "homepage": "https://websk.ru/",
+            "support": {
+                "issues": "https://github.com/websk/php-config/issues",
+                "source": "https://github.com/websk/php-config/tree/master"
+            },
             "time": "2018-12-03T15:24:53+00:00"
         },
         {
             "name": "websk/php-db",
-            "version": "1.2.1",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/websk/php-db.git",
-                "reference": "0a38be196250c190fdaf7318ade112b1ec9e2e5b"
+                "reference": "765350f6de54aa0049289409446b6652ea87ed5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websk/php-db/zipball/0a38be196250c190fdaf7318ade112b1ec9e2e5b",
-                "reference": "0a38be196250c190fdaf7318ade112b1ec9e2e5b",
+                "url": "https://api.github.com/repos/websk/php-db/zipball/765350f6de54aa0049289409446b6652ea87ed5e",
+                "reference": "765350f6de54aa0049289409446b6652ea87ed5e",
                 "shasum": ""
             },
             "require": {
                 "ext-pdo": "*",
+                "websk/php-slim": "1.0.*",
                 "websk/php-utils": "1.0.*"
             },
             "type": "library",
@@ -481,20 +512,24 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2018-12-12T11:04:07+00:00"
+            "support": {
+                "issues": "https://github.com/websk/php-db/issues",
+                "source": "https://github.com/websk/php-db/tree/master"
+            },
+            "time": "2019-03-11T15:16:41+00:00"
         },
         {
             "name": "websk/php-slim",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/websk/php-slim.git",
-                "reference": "c10087e9b253ff2b7a0b04d1c72cade33800c06e"
+                "reference": "b0cda8bc4ad0b6ffabc15e099ff0ab2fcc09600b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websk/php-slim/zipball/c10087e9b253ff2b7a0b04d1c72cade33800c06e",
-                "reference": "c10087e9b253ff2b7a0b04d1c72cade33800c06e",
+                "url": "https://api.github.com/repos/websk/php-slim/zipball/b0cda8bc4ad0b6ffabc15e099ff0ab2fcc09600b",
+                "reference": "b0cda8bc4ad0b6ffabc15e099ff0ab2fcc09600b",
                 "shasum": ""
             },
             "require": {
@@ -510,23 +545,29 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "Slim framework utils",
             "homepage": "https://websk.ru/",
-            "time": "2018-11-30T11:48:41+00:00"
+            "support": {
+                "issues": "https://github.com/websk/php-slim/issues",
+                "source": "https://github.com/websk/php-slim/tree/master"
+            },
+            "time": "2018-12-14T14:38:32+00:00"
         },
         {
             "name": "websk/php-utils",
-            "version": "1.0.2",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/websk/php-utils.git",
-                "reference": "e6a4861c8a918fb9953b0c4e46072d765fbd592b"
+                "reference": "f63b782355d34ca39f5f15d72d91515581e93e0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websk/php-utils/zipball/e6a4861c8a918fb9953b0c4e46072d765fbd592b",
-                "reference": "e6a4861c8a918fb9953b0c4e46072d765fbd592b",
+                "url": "https://api.github.com/repos/websk/php-utils/zipball/f63b782355d34ca39f5f15d72d91515581e93e0c",
+                "reference": "f63b782355d34ca39f5f15d72d91515581e93e0c",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
+                "php": "^7.4",
                 "websk/php-config": "1.0.*"
             },
             "type": "library",
@@ -536,7 +577,11 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2018-12-10T19:13:25+00:00"
+            "support": {
+                "issues": "https://github.com/websk/php-utils/issues",
+                "source": "https://github.com/websk/php-utils/tree/1.0.7"
+            },
+            "time": "2021-02-04T13:46:06+00:00"
         }
     ],
     "packages-dev": [],
@@ -546,7 +591,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
+        "php": "^7.4",
         "ext-pdo": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }

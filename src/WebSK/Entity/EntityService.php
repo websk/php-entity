@@ -18,12 +18,12 @@ abstract class EntityService implements
     const DEFAULT_CACHE_TTL_SEC = 60;
     const ALL_IDS_ARR_CACHE_KEY_PREFIX = 'all_ids_arr_';
 
-    /** @var string */
-    protected $entity_class_name;
+    protected string $entity_class_name;
+
     /** @var EntityRepository */
     protected $repository;
-    /** @var CacheService */
-    protected $cache_service;
+
+    protected CacheService $cache_service;
 
     /**
      * EntityService constructor.
@@ -42,9 +42,22 @@ abstract class EntityService implements
     }
 
     /**
+     * @param string $entity_class_name
+     * @return string
+     */
+    public static function getContainerIdByClassName(string $entity_class_name): string
+    {
+        if (defined($entity_class_name . '::ENTITY_SERVICE_CONTAINER_ID')) {
+            return $entity_class_name::ENTITY_SERVICE_CONTAINER_ID;
+        }
+
+        return $entity_class_name . 'Service';
+    }
+
+    /**
      * @return int
      */
-    protected function getCacheTtlSeconds()
+    protected function getCacheTtlSeconds(): int
     {
         return self::DEFAULT_CACHE_TTL_SEC;
     }
@@ -54,7 +67,7 @@ abstract class EntityService implements
      * @param null|int $entity_id
      * @return string
      */
-    protected static function getEntityObjectCacheId(string $entity_class_name, ?int $entity_id)
+    protected static function getEntityObjectCacheId(string $entity_class_name, ?int $entity_id): string
     {
         return $entity_class_name . '::' . $entity_id;
     }
@@ -62,7 +75,7 @@ abstract class EntityService implements
     /**
      * @return array
      */
-    public function getAllIdsArrByIdAsc()
+    public function getAllIdsArrByIdAsc(): array
     {
         $cache_key = $this->getAllIdsArrByIdAscCacheKey();
 
@@ -84,7 +97,7 @@ abstract class EntityService implements
     /**
      * @return string
      */
-    protected function getAllIdsArrByIdAscCacheKey()
+    protected function getAllIdsArrByIdAscCacheKey(): string
     {
         return self::ALL_IDS_ARR_CACHE_KEY_PREFIX . $this->entity_class_name;
     }
@@ -95,7 +108,7 @@ abstract class EntityService implements
      * @return null|InterfaceEntity
      * @throws \Exception
      */
-    public function getById(?int $entity_id, bool $exception_if_not_loaded = true)
+    public function getById(?int $entity_id, bool $exception_if_not_loaded = true): ?InterfaceEntity
     {
         if (is_null($entity_id)) {
             return null;
@@ -155,7 +168,7 @@ abstract class EntityService implements
      * @return bool
      * @throws \Exception
      */
-    public function inTransaction()
+    public function inTransaction(): bool
     {
         return $this->repository->inTransaction();
     }
@@ -164,7 +177,7 @@ abstract class EntityService implements
      * @return bool
      * @throws \Exception
      */
-    public function beginTransaction()
+    public function beginTransaction(): bool
     {
         return $this->repository->beginTransaction();
     }
@@ -173,7 +186,7 @@ abstract class EntityService implements
      * @return bool
      * @throws \Exception
      */
-    public function commitTransaction()
+    public function commitTransaction(): bool
     {
         return $this->repository->commitTransaction();
     }
@@ -182,7 +195,7 @@ abstract class EntityService implements
      * @return bool
      * @throws \Exception
      */
-    public function rollbackTransaction()
+    public function rollbackTransaction(): bool
     {
         return $this->repository->rollBackTransaction();
     }
@@ -262,10 +275,10 @@ abstract class EntityService implements
      * Если объект удалять нельзя - нужно вернуть false.
      * В переменную, переданную по ссылке, можно записать текст сообщения для вывода пользователю.
      * @param InterfaceEntity $entity_obj
-     * @param $message
+     * @param string $message
      * @return bool
      */
-    public function canDelete(InterfaceEntity $entity_obj, string &$message)
+    public function canDelete(InterfaceEntity $entity_obj, string &$message): bool
     {
         return true;
     }
@@ -334,5 +347,36 @@ abstract class EntityService implements
 
         $cache_key = $this->getAllIdsArrByIdAscCacheKey();
         $this->cache_service->delete($cache_key);
+    }
+
+    /**
+     * @param array $ids_arr
+     * @return array
+     */
+    protected function getByIds(array $ids_arr): array
+    {
+        $entity_objs_arr = [];
+
+        foreach ($ids_arr as $id) {
+            $entity_obj = $this->getById($id, false);
+
+            if (!$entity_obj) {
+                continue;
+            }
+
+            $entity_objs_arr[] = $entity_obj;
+        }
+
+        return $entity_objs_arr;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllObjsArr(): array
+    {
+        $ids_arr = $this->getAllIdsArrByIdAsc();
+
+        return $this->getByIds($ids_arr);
     }
 }

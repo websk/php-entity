@@ -27,15 +27,40 @@ abstract class EntityRepository implements
 
     public const DEFAULT_ID_FIELD_NAME = 'id';
 
-    /** @var string */
-    protected $entity_class_name;
-    /** @var DBService */
-    protected $db_service;
+    protected string $entity_class_name;
 
+    protected DBService $db_service;
+
+    /**
+     * EntityRepository constructor.
+     * @param $entity_class_name
+     * @param DBService $db_service
+     */
     public function __construct($entity_class_name, DBService $db_service)
     {
         $this->entity_class_name = $entity_class_name;
         $this->db_service = $db_service;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContainerId(): string
+    {
+        return self::getContainerIdByClassName($this->entity_class_name);
+    }
+
+    /**
+     * @param string $entity_class_name
+     * @return string
+     */
+    public static function getContainerIdByClassName(string $entity_class_name): string
+    {
+        if (defined($entity_class_name . '::ENTITY_REPOSITORY_CONTAINER_ID')) {
+            return $entity_class_name::ENTITY_REPOSITORY_CONTAINER_ID;
+        }
+
+        return $entity_class_name . 'Repository';
     }
 
     /**
@@ -48,16 +73,12 @@ abstract class EntityRepository implements
         if (!defined($this->entity_class_name . '::DB_TABLE_NAME')) {
             throw new \Exception('class must provide DB_TABLE_NAME constant to use EntityRepository');
         }
-
-        if (!defined($this->entity_class_name . '::ENTITY_REPOSITORY_CONTAINER_ID')) {
-            throw new \Exception('class must provide ENTITY_REPOSITORY_CONTAINER_ID constant to use EntityRepository');
-        }
     }
 
     /**
      * @return DBService
      */
-    public function getDbService()
+    public function getDbService(): DBService
     {
         return $this->db_service;
     }
@@ -66,7 +87,7 @@ abstract class EntityRepository implements
      * @return string
      * @throws \Exception
      */
-    public function getTableName()
+    public function getTableName(): string
     {
         $this->exceptionIfClassIsIncompatibleWithEntityRepository();
 
@@ -76,7 +97,7 @@ abstract class EntityRepository implements
     /**
      * @return string
      */
-    public function getIdFieldName()
+    public function getIdFieldName(): string
     {
         if (defined($this->entity_class_name . '::DB_ID_FIELD_NAME')) {
             return $this->entity_class_name::DB_ID_FIELD_NAME;
@@ -96,14 +117,12 @@ abstract class EntityRepository implements
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();
 
-        $ids_arr = $this->db_service->readColumn(
+        return $this->db_service->readColumn(
             'SELECT ' . Sanitize::sanitizeSqlColumnName($db_id_field_name)
             . ' FROM ' . Sanitize::sanitizeSqlColumnName($db_table_name)
             . ' ORDER BY created_at_ts DESC
                     LIMIT ' . intval($page_size) . ' OFFSET ' . intval($offset)
         );
-
-        return $ids_arr;
     }
 
     /**
@@ -115,13 +134,11 @@ abstract class EntityRepository implements
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();
 
-        $ids_arr = $this->db_service->readColumn(
+        return $this->db_service->readColumn(
             'SELECT ' . Sanitize::sanitizeSqlColumnName($db_id_field_name) .
             ' FROM ' . Sanitize::sanitizeSqlColumnName($db_table_name) .
             ' ORDER BY ' . Sanitize::sanitizeSqlColumnName($db_id_field_name) . ' ASC'
         );
-
-        return $ids_arr;
     }
 
     /**
@@ -129,7 +146,7 @@ abstract class EntityRepository implements
      * @return null|InterfaceEntity
      * @throws \Exception
      */
-    public function findById(int $id)
+    public function findById(int $id): ?InterfaceEntity
     {
         $this->exceptionIfClassIsIncompatibleWithEntityRepository();
 
@@ -174,7 +191,7 @@ abstract class EntityRepository implements
      * @return bool
      * @throws \Exception
      */
-    public function inTransaction()
+    public function inTransaction(): bool
     {
         return $this->db_service->inTransaction();
     }
@@ -183,7 +200,7 @@ abstract class EntityRepository implements
      * @return bool
      * @throws \Exception
      */
-    public function beginTransaction()
+    public function beginTransaction(): bool
     {
         return $this->db_service->beginTransaction();
     }
@@ -192,7 +209,7 @@ abstract class EntityRepository implements
      * @return bool
      * @throws \Exception
      */
-    public function commitTransaction()
+    public function commitTransaction(): bool
     {
         return $this->db_service->commitTransaction();
     }
@@ -201,7 +218,7 @@ abstract class EntityRepository implements
      * @return bool
      * @throws \Exception
      */
-    public function rollbackTransaction()
+    public function rollbackTransaction(): bool
     {
         return $this->db_service->rollBackTransaction();
     }
@@ -266,7 +283,7 @@ abstract class EntityRepository implements
      * @return \PDOStatement
      * @throws \ReflectionException
      */
-    public function delete(InterfaceEntity $entity_obj)
+    public function delete(InterfaceEntity $entity_obj): \PDOStatement
     {
         $this->exceptionIfClassIsIncompatibleWithEntityRepository();
 
@@ -282,13 +299,11 @@ abstract class EntityRepository implements
             throw new \Exception('Deleting not saved object');
         }
 
-        $result = $this->db_service->query(
+        return $this->db_service->query(
             'DELETE FROM ' . Sanitize::sanitizeSqlColumnName($db_table_name)
             . ' WHERE ' . Sanitize::sanitizeSqlColumnName($db_id_field_name) . ' = ?',
             [$entity_id_value]
         );
-
-        return $result;
     }
 
     /**
@@ -296,7 +311,7 @@ abstract class EntityRepository implements
      * @return string
      * @throws \Exception
      */
-    protected function insertRecord(array $fields_to_save_arr)
+    protected function insertRecord(array $fields_to_save_arr): string
     {
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();

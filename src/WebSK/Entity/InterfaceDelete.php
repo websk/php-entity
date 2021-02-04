@@ -15,7 +15,7 @@ interface InterfaceDelete
      * @param string $message
      * @return bool
      */
-    public function canDelete(InterfaceEntity $entity_obj, string &$message);
+    public function canDelete(InterfaceEntity $entity_obj, string &$message): bool;
 
     /**
      * @param InterfaceEntity $entity_obj
