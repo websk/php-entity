@@ -8,8 +8,7 @@ namespace WebSK\Entity;
  */
 trait WeightTrait
 {
-    /** @var int */
-    protected $weight;
+    protected int $weight = 0;
 
     /**
      * @param int $weight

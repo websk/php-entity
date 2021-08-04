@@ -16,7 +16,7 @@ class WeightRepository extends EntityRepository
      * @return int
      * @throws \Exception
      */
-    public function getMaxWeightForContext($extra_fields_arr = []): int
+    public function getMaxWeightForContext(array $extra_fields_arr = []): int
     {
         $db_table_name = $this->getTableName();
 
@@ -53,12 +53,12 @@ class WeightRepository extends EntityRepository
      * Находит в указанном контексте (т.е. для набора пар поле - значение) объект с максимальным весом,
      * меньшим чем у текущего, и меняет текущий объект с ним весами
      * т.е. объект поднимается на одну позицию вверх если сортировать по возрастанию веса
-     * @param $current_item_weight
+     * @param int $current_item_weight
      * @param array $extra_fields_arr
-     * @return false|mixed
+     * @return null|int
      * @throws \Exception
      */
-    public function getObjectToSwapWeightsId($current_item_weight, $extra_fields_arr = [])
+    public function getObjectToSwapWeightsId(int $current_item_weight, array $extra_fields_arr = []): ?int
     {
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();
@@ -84,6 +84,10 @@ class WeightRepository extends EntityRepository
             . ' WHERE ' . implode(' AND ', $where_arr)
             . ' ORDER BY weight DESC, id DESC LIMIT 1';
         $object_to_swap_weights_id = $this->db_service->readField($sql, $params_arr);
+
+        if ($object_to_swap_weights_id === false) {
+            return null;
+        }
 
         return $object_to_swap_weights_id;
     }

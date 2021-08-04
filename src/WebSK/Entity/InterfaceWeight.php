@@ -8,7 +8,7 @@ namespace WebSK\Entity;
  */
 interface InterfaceWeight
 {
-    public function getWeight();
+    public function getWeight(): int;
 
     /**
      * @param int $weight

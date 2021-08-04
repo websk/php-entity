@@ -15,10 +15,10 @@ class WeightService extends EntityService
      * находит в указанном контексте (т.е. для набора пар поле - значение) объект с максимальным весом,
      * меньшим чем у текущего, и меняет текущий объект с ним весами
      * т.е. объект поднимается на одну позицию вверх если сортировать по возрастанию веса
-     * @param InterfaceWeight $entity_obj
+     * @param InterfaceWeight|InterfaceEntity $entity_obj
      * @param array $extra_fields_arr
      */
-    public function swapWeights(InterfaceWeight $entity_obj, array $extra_fields_arr = array())
+    public function swapWeights(InterfaceWeight $entity_obj, array $extra_fields_arr = [])
     {
         if (!($entity_obj instanceof InterfaceWeight)) {
             throw new \Exception('Entity class must provide method getWeight');
@@ -54,10 +54,17 @@ class WeightService extends EntityService
             throw new \Exception('Entity class must provide method getId');
         }
 
-        if (is_null($entity_obj->getId())) {
-            $entity_obj->setWeight(
-                $this->repository->getMaxWeightForContext($context_fields_arr) + 1
-            );
+        if (!is_null($entity_obj->getId())) {
+            return;
         }
+
+        // Если передаем вес явно для нового объекта
+        if ($entity_obj->getWeight()) {
+            return;
+        }
+
+        $entity_obj->setWeight(
+            $this->repository->getMaxWeightForContext($context_fields_arr) + 1
+        );
     }
 }
