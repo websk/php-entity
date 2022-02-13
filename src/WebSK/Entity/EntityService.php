@@ -201,17 +201,22 @@ abstract class EntityService implements
     }
 
     /**
-     * Базовая реализация beforeSave - ничего не делает.
-     * При необходимости можно переопределить этот метод и сделать в нем дополнительную обработку или проверки перед
-     * сохранением.
      * @param InterfaceEntity $entity_obj
      */
     public function beforeSave(InterfaceEntity $entity_obj)
     {
+        if (!($entity_obj instanceof InterfaceEntity)) {
+            throw new \Exception('Entity class must provide method getId');
+        }
+
+        if ($entity_obj->getId()) {
+            $current_entity_obj = $this->getById($entity_obj->getId());
+            $this->removeFromCache($current_entity_obj);
+        }
     }
 
     /**
-     * все сохранение делается внутри транзакции (включая beforeSave и afterSave),
+     * Все сохранение делается внутри транзакции (включая beforeSave и afterSave),
      * если будет исключение - транзакция будет откачена PDO
      * @param InterfaceEntity $entity_obj
      * @throws \Exception
@@ -256,10 +261,6 @@ abstract class EntityService implements
     }
 
     /**
-     * Базовая обработка изменения.
-     * Если на это событие есть подписчики - нужно переопределить обработчик в самом классе и там уже подписать
-     * остальных подписчиков.
-     * Не забыть в переопределенном методе сбросить кэш!
      * @param InterfaceEntity $entity_obj
      */
     public function afterSave(InterfaceEntity $entity_obj)
