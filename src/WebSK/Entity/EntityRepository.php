@@ -25,7 +25,7 @@ abstract class EntityRepository implements
     InterfaceEntityRepository
 {
 
-    public const DEFAULT_ID_FIELD_NAME = 'id';
+    public const string DEFAULT_ID_FIELD_NAME = 'id';
 
     protected string $entity_class_name;
 

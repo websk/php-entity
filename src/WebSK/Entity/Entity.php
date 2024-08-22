@@ -12,12 +12,10 @@ abstract class Entity implements
     use ProtectPropertiesTrait;
 
     const _CREATED_AT_TS = 'created_at_ts';
-    /** @var int */
-    protected $created_at_ts; // initialized by constructor
+    protected int $created_at_ts;
 
     const _ID = 'id';
-    /** @var int */
-    protected $id;
+    protected int $id;
 
     public function __construct()
     {
@@ -33,7 +31,7 @@ abstract class Entity implements
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getCreatedAtTs()
     {
@@ -41,9 +39,9 @@ abstract class Entity implements
     }
 
     /**
-     * @param string $timestamp
+     * @param int $timestamp
      */
-    public function setCreatedAtTs(string $timestamp)
+    public function setCreatedAtTs(int $timestamp)
     {
         $this->created_at_ts = $timestamp;
     }

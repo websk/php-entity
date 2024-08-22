@@ -15,8 +15,8 @@ abstract class EntityService implements
     InterfaceSave,
     InterfaceDelete
 {
-    const DEFAULT_CACHE_TTL_SEC = 60;
-    const ALL_IDS_ARR_CACHE_KEY_PREFIX = 'all_ids_arr_';
+    const int DEFAULT_CACHE_TTL_SEC = 60;
+    const string ALL_IDS_ARR_CACHE_KEY_PREFIX = 'all_ids_arr_';
 
     protected string $entity_class_name;
 
