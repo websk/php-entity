@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ba72655c66f5d5229aeb325644f6ed8",
+    "content-hash": "45dcf239effb7ed55c2a9a446e5ce66f",
     "packages": [
         {
             "name": "nikic/fast-route",
@@ -664,23 +664,23 @@
         },
         {
             "name": "websk/php-cache",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/websk/php-cache.git",
-                "reference": "69015c1334ba2f12e735540b9ba0bb2863319ef7"
+                "reference": "e75932e4e8fbb0d32e511b6f0a8b2dcdabb0d1f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websk/php-cache/zipball/69015c1334ba2f12e735540b9ba0bb2863319ef7",
-                "reference": "69015c1334ba2f12e735540b9ba0bb2863319ef7",
+                "url": "https://api.github.com/repos/websk/php-cache/zipball/e75932e4e8fbb0d32e511b6f0a8b2dcdabb0d1f5",
+                "reference": "e75932e4e8fbb0d32e511b6f0a8b2dcdabb0d1f5",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.3",
                 "predis/predis": "1.*",
                 "psr/container": "^1.0",
-                "websk/php-slim": "2.0.*",
+                "websk/php-slim": "2.1.*",
                 "websk/php-utils": "2.0.*"
             },
             "type": "library",
@@ -692,9 +692,9 @@
             "notification-url": "https://packagist.org/downloads/",
             "support": {
                 "issues": "https://github.com/websk/php-cache/issues",
-                "source": "https://github.com/websk/php-cache/tree/2.0.0"
+                "source": "https://github.com/websk/php-cache/tree/2.1.0"
             },
-            "time": "2024-08-22T07:39:14+00:00"
+            "time": "2024-09-01T12:32:52+00:00"
         },
         {
             "name": "websk/php-config",
@@ -768,22 +768,23 @@
         },
         {
             "name": "websk/php-slim",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/websk/php-slim.git",
-                "reference": "7723e670625a4ce0c00737c7d4dd68fb407a1a12"
+                "reference": "11e513ef7646662aef08a2d1d839768c656364fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websk/php-slim/zipball/7723e670625a4ce0c00737c7d4dd68fb407a1a12",
-                "reference": "7723e670625a4ce0c00737c7d4dd68fb407a1a12",
+                "url": "https://api.github.com/repos/websk/php-slim/zipball/11e513ef7646662aef08a2d1d839768c656364fb",
+                "reference": "11e513ef7646662aef08a2d1d839768c656364fb",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.3",
                 "slim/php-view": "3.2.0",
-                "slim/slim": "4.14.*"
+                "slim/slim": "4.14.*",
+                "websk/php-utils": "2.0.*"
             },
             "type": "library",
             "autoload": {
@@ -796,9 +797,9 @@
             "homepage": "https://websk.ru/",
             "support": {
                 "issues": "https://github.com/websk/php-slim/issues",
-                "source": "https://github.com/websk/php-slim/tree/2.0.0"
+                "source": "https://github.com/websk/php-slim/tree/2.1.0"
             },
-            "time": "2024-08-08T08:12:59+00:00"
+            "time": "2024-09-01T12:30:44+00:00"
         },
         {
             "name": "websk/php-utils",
