@@ -341,7 +341,7 @@ abstract class EntityRepository implements
      * @param int $entity_id_value
      * @throws \Exception
      */
-    protected function updateRecord(array $fields_to_save_arr, int $entity_id_value)
+    protected function updateRecord(array $fields_to_save_arr, int $entity_id_value): void
     {
         $db_table_name = $this->getTableName();
         $db_id_field_name = $this->getIdFieldName();

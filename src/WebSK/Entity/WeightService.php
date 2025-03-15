@@ -18,7 +18,7 @@ class WeightService extends EntityService
      * @param InterfaceWeight|InterfaceEntity $entity_obj
      * @param array $extra_fields_arr
      */
-    public function swapWeights(InterfaceWeight $entity_obj, array $extra_fields_arr = [])
+    public function swapWeights(InterfaceWeight $entity_obj, array $extra_fields_arr = []): void
     {
         if (!($entity_obj instanceof InterfaceWeight)) {
             throw new \Exception('Entity class must provide method getWeight');

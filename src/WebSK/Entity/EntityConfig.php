@@ -16,7 +16,7 @@ class EntityConfig
     /**
      * @return bool
      */
-    public static function isIgnoreMissingPropertiesOnSave()
+    public static function isIgnoreMissingPropertiesOnSave(): bool
     {
         return self::$ignore_missing_properties_on_save;
     }
@@ -24,7 +24,7 @@ class EntityConfig
     /**
      * @param bool $ignore_missing_properties_on_save
      */
-    public static function setIgnoreMissingPropertiesOnSave($ignore_missing_properties_on_save)
+    public static function setIgnoreMissingPropertiesOnSave(bool $ignore_missing_properties_on_save): void
     {
         self::$ignore_missing_properties_on_save = $ignore_missing_properties_on_save;
     }
@@ -32,7 +32,7 @@ class EntityConfig
     /**
      * @return bool
      */
-    public static function isIgnoreMissingPropertiesOnLoad()
+    public static function isIgnoreMissingPropertiesOnLoad(): bool
     {
         return self::$ignore_missing_properties_on_load;
     }
@@ -40,7 +40,7 @@ class EntityConfig
     /**
      * @param bool $ignore_missing_properties_on_load
      */
-    public static function setIgnoreMissingPropertiesOnLoad($ignore_missing_properties_on_load)
+    public static function setIgnoreMissingPropertiesOnLoad(bool $ignore_missing_properties_on_load): void
     {
         self::$ignore_missing_properties_on_load = $ignore_missing_properties_on_load;
     }

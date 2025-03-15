@@ -20,10 +20,10 @@ interface InterfaceDelete
     /**
      * @param InterfaceEntity $entity_obj
      */
-    public function delete(InterfaceEntity $entity_obj);
+    public function delete(InterfaceEntity $entity_obj): void;
 
     /**
      * @param InterfaceEntity $entity_obj
      */
-    public function afterDelete(InterfaceEntity $entity_obj);
+    public function afterDelete(InterfaceEntity $entity_obj): void;
 }

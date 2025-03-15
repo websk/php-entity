@@ -142,7 +142,7 @@ abstract class EntityService implements
     /**
      * @param int $entity_id
      */
-    public function removeObjFromCacheById(int $entity_id)
+    public function removeObjFromCacheById(int $entity_id): void
     {
         $cache_key = self::getEntityObjectCacheId($this->entity_class_name, $entity_id);
 
@@ -155,7 +155,7 @@ abstract class EntityService implements
      * @param InterfaceEntity $entity_obj
      * @throws \Exception
      */
-    public function removeFromCache(InterfaceEntity $entity_obj)
+    public function removeFromCache(InterfaceEntity $entity_obj): void
     {
         if (!($entity_obj instanceof InterfaceEntity)) {
             throw new \Exception('Entity class must provide method getId');
@@ -203,7 +203,7 @@ abstract class EntityService implements
     /**
      * @param InterfaceEntity $entity_obj
      */
-    public function beforeSave(InterfaceEntity $entity_obj)
+    public function beforeSave(InterfaceEntity $entity_obj): void
     {
         if (!($entity_obj instanceof InterfaceEntity)) {
             throw new \Exception('Entity class must provide method getId');
@@ -221,7 +221,7 @@ abstract class EntityService implements
      * @param InterfaceEntity $entity_obj
      * @throws \Exception
      */
-    public function save(InterfaceEntity $entity_obj)
+    public function save(InterfaceEntity $entity_obj): void
     {
         $transaction_is_my = false;
         if (!$this->repository->inTransaction()) {
@@ -263,7 +263,7 @@ abstract class EntityService implements
     /**
      * @param InterfaceEntity $entity_obj
      */
-    public function afterSave(InterfaceEntity $entity_obj)
+    public function afterSave(InterfaceEntity $entity_obj): void
     {
         $this->removeFromCache($entity_obj);
 
@@ -290,7 +290,7 @@ abstract class EntityService implements
      * @param InterfaceEntity $entity_obj
      * @throws \Exception
      */
-    public function delete(InterfaceEntity $entity_obj)
+    public function delete(InterfaceEntity $entity_obj): void
     {
         $transaction_is_my = false;
         if (!$this->inTransaction()) {
@@ -329,7 +329,7 @@ abstract class EntityService implements
      * @param int $entity_id
      * @throws \Exception
      */
-    public function deleteById(int $entity_id)
+    public function deleteById(int $entity_id): void
     {
         $entity_obj = $this->getById($entity_id);
         $this->delete($entity_obj);
@@ -342,7 +342,7 @@ abstract class EntityService implements
      * - не быть статическим: работает в контексте конкретного объекта
      * @param InterfaceEntity $entity_obj
      */
-    public function afterDelete(InterfaceEntity $entity_obj)
+    public function afterDelete(InterfaceEntity $entity_obj): void
     {
         $this->removeFromCache($entity_obj);
 

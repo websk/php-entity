@@ -11,11 +11,11 @@ abstract class Entity implements
 {
     use ProtectPropertiesTrait;
 
-    const _CREATED_AT_TS = 'created_at_ts';
+    const string _CREATED_AT_TS = 'created_at_ts';
     protected int $created_at_ts;
 
-    const _ID = 'id';
-    protected int $id;
+    const string _ID = 'id';
+    protected ?int $id = null;
 
     public function __construct()
     {
@@ -33,7 +33,7 @@ abstract class Entity implements
     /**
      * @return int
      */
-    public function getCreatedAtTs()
+    public function getCreatedAtTs(): int
     {
         return $this->created_at_ts;
     }
@@ -41,7 +41,7 @@ abstract class Entity implements
     /**
      * @param int $timestamp
      */
-    public function setCreatedAtTs(int $timestamp)
+    public function setCreatedAtTs(int $timestamp): void
     {
         $this->created_at_ts = $timestamp;
     }

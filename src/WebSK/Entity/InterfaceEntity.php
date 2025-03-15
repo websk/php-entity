@@ -8,5 +8,5 @@ namespace WebSK\Entity;
  */
 interface InterfaceEntity
 {
-    public function getId();
+    public function getId(): ?int;
 }

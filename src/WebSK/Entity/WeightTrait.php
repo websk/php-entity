@@ -13,7 +13,7 @@ trait WeightTrait
     /**
      * @param int $weight
      */
-    public function setWeight(int $weight)
+    public function setWeight(int $weight): void
     {
         $this->weight = $weight;
     }
