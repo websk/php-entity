@@ -5,8 +5,8 @@
     "php": "^8.3",
     "ext-pdo": "*",
     "websk/php-cache": "2.2.*",
-    "websk/php-db": "2.0.*",
-    "websk/php-utils": "2.0.*"
+    "websk/php-db": "2.1.*",
+    "websk/php-utils": "2.1.*"
   },
   "autoload": {
     "psr-4": {
