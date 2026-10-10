@@ -13,5 +13,5 @@ interface InterfaceWeight
     /**
      * @param int $weight
      */
-    public function setWeight(int $weight);
+    public function setWeight(int $weight): void;
 }

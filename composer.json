@@ -1,16 +1,52 @@
 {
   "name": "websk/php-entity",
-  "description": "PHP Entity",
+  "description": "Entity, repository, service, caching, and ordering primitives for WebSK applications",
+  "type": "library",
+  "license": "MIT",
   "require": {
     "php": "^8.3",
     "ext-pdo": "*",
-    "websk/php-cache": "2.2.*",
-    "websk/php-db": "2.1.*",
-    "websk/php-utils": "2.1.*"
+    "websk/php-cache": "3.0.*",
+    "websk/php-db": "2.2.*",
+    "websk/php-utils": "3.0.*"
   },
   "autoload": {
     "psr-4": {
-      "": "src/"
+      "WebSK\\": "src/WebSK/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WebSK\\Entity\\Tests\\": "tests/"
+    },
+    "files": [
+      "tests/Support/TestDoubles.php"
+    ],
+    "exclude-from-classmap": [
+      "/tests/Support/TestDoubles.php"
+    ]
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^12.5"
+  },
+  "scripts": {
+    "lint": "find src tests -name '*.php' -type f -print0 | xargs -0 -n1 php -l",
+    "test": "phpunit --configuration phpunit.xml",
+    "phpstan": "phpstan analyse --no-progress --debug",
+    "check": [
+      "@lint",
+      "@test",
+      "@phpstan"
+    ]
+  },
+  "archive": {
+    "exclude": [
+      "/vendor/",
+      "/.idea/",
+      "/.ai/",
+      "/.phpunit.cache/",
+      "/.phpstan-cache/"
+    ]
   }
 }

@@ -14,15 +14,15 @@ interface InterfaceEntityRepository
      * - возвращает объект если все нормально, null - если не получилось загрузить объект (нет в БД и т.п.)
      * @param int $id
      */
-    public function findById(int $id);
+    public function findById(int $id): ?InterfaceEntity;
 
     /**
      * @param InterfaceEntity $entity_obj
      */
-    public function save(InterfaceEntity $entity_obj);
+    public function save(InterfaceEntity $entity_obj): void;
 
     /**
      * @param InterfaceEntity $entity_obj
      */
-    public function delete(InterfaceEntity $entity_obj);
+    public function delete(InterfaceEntity $entity_obj): \PDOStatement;
 }

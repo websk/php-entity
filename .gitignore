@@ -2,6 +2,8 @@
 var/logs/*
 !var/logs/.gitkeep
 vendor/
+.phpunit.cache/
+.phpstan-cache/
 config/config.php
 var/docker/.env
 node_modules

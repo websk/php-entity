@@ -8,7 +8,10 @@ namespace WebSK\Entity;
  */
 class EntityConfig
 {
+    /** @var array<int, callable> */
     protected static array $after_save_subscribers_arr = [];
+
+    /** @var array<int, callable> */
     protected static array $before_save_subscribers_arr = [];
     protected static bool $ignore_missing_properties_on_load = false;
     protected static bool $ignore_missing_properties_on_save = false;

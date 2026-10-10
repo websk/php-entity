@@ -23,7 +23,7 @@ abstract class Entity implements
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getId(): ?int
     {

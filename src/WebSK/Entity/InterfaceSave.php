@@ -15,15 +15,15 @@ interface InterfaceSave
     /**
      * @param InterfaceEntity $entity_obj
      */
-    public function beforeSave(InterfaceEntity  $entity_obj);
+    public function beforeSave(InterfaceEntity $entity_obj): void;
 
     /**
      * @param InterfaceEntity $entity_obj
      */
-    public function save(InterfaceEntity $entity_obj);
+    public function save(InterfaceEntity $entity_obj): void;
 
     /**
      * @param InterfaceEntity $entity_obj
      */
-    public function afterSave(InterfaceEntity $entity_obj);
+    public function afterSave(InterfaceEntity $entity_obj): void;
 }

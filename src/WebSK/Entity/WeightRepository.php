@@ -12,7 +12,7 @@ class WeightRepository extends EntityRepository
 {
     /**
      * Возвращает максимальный вес в указанном контексте (т.е. для набора пар поле - значение)
-     * @param array $extra_fields_arr
+     * @param array<string, mixed> $extra_fields_arr
      * @return int
      * @throws \Exception
      */
@@ -25,7 +25,7 @@ class WeightRepository extends EntityRepository
 
         if (!empty($extra_fields_arr)) {
             foreach ($extra_fields_arr as $extra_field_name => $extra_field_value) {
-                $extra_field_name = preg_replace('|[^a-zA-Z0-9_]|', '', $extra_field_name);
+                $extra_field_name = self::normalizeContextFieldName($extra_field_name);
 
                 if (is_null($extra_field_value)) {
                     $where_arr[] = $extra_field_name . ' is null';
@@ -46,7 +46,11 @@ class WeightRepository extends EntityRepository
             $params_arr
         );
 
-        return intval($weight);
+        if ($weight === false || $weight === null) {
+            return 0;
+        }
+
+        return self::normalizeInteger($weight, 'Weight');
     }
 
     /**
@@ -54,7 +58,7 @@ class WeightRepository extends EntityRepository
      * меньшим чем у текущего, и меняет текущий объект с ним весами
      * т.е. объект поднимается на одну позицию вверх если сортировать по возрастанию веса
      * @param int $current_item_weight
-     * @param array $extra_fields_arr
+     * @param array<string, mixed> $extra_fields_arr
      * @return null|int
      * @throws \Exception
      */
@@ -68,7 +72,7 @@ class WeightRepository extends EntityRepository
 
         if (!empty($extra_fields_arr)) {
             foreach ($extra_fields_arr as $extra_field_name => $extra_field_value) {
-                $extra_field_name = preg_replace('|[^a-zA-Z0-9_]|', '', $extra_field_name);
+                $extra_field_name = self::normalizeContextFieldName($extra_field_name);
 
                 if (is_null($extra_field_value)) {
                     $where_arr[] = $extra_field_name . ' is null';
@@ -82,13 +86,35 @@ class WeightRepository extends EntityRepository
         $sql = 'SELECT ' . Sanitize::sanitizeSqlColumnName($db_id_field_name)
             . ' FROM ' . Sanitize::sanitizeSqlColumnName($db_table_name)
             . ' WHERE ' . implode(' AND ', $where_arr)
-            . ' ORDER BY weight DESC, id DESC LIMIT 1';
+            . ' ORDER BY weight DESC, ' . Sanitize::sanitizeSqlColumnName($db_id_field_name) . ' DESC LIMIT 1';
         $object_to_swap_weights_id = $this->db_service->readField($sql, $params_arr);
 
         if ($object_to_swap_weights_id === false) {
             return null;
         }
 
-        return $object_to_swap_weights_id;
+        return self::normalizeInteger($object_to_swap_weights_id, 'Entity ID');
+    }
+
+    private static function normalizeContextFieldName(string $field_name): string
+    {
+        $normalized_field_name = preg_replace('|[^a-zA-Z0-9_]|', '', $field_name);
+        if ($normalized_field_name === null || $normalized_field_name === '') {
+            throw new \InvalidArgumentException('Context field name must contain letters, digits, or underscores');
+        }
+
+        return $normalized_field_name;
+    }
+
+    private static function normalizeInteger(mixed $value, string $label): int
+    {
+        if (is_int($value)) {
+            return $value;
+        }
+        if (is_string($value) && preg_match('/^-?\d+$/D', $value) === 1) {
+            return (int)$value;
+        }
+
+        throw new \UnexpectedValueException($label . ' must be an integer or an integer string');
     }
 }
