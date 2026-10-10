@@ -7,7 +7,7 @@
 - PHP 8.3, 8.4, or 8.5
 - PDO
 - `websk/php-cache` 3.0
-- `websk/php-db` 2.2
+- `websk/php-db` 3.0
 - `websk/php-utils` 3.0
 
 ## Installation

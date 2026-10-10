@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54017ce4fe1fb6a4c2c6bbcb0e1a7b20",
+    "content-hash": "5a12815c7f3a44eb103475af3339781d",
     "packages": [
         {
             "name": "psr/container",
@@ -156,16 +156,16 @@
         },
         {
             "name": "websk/php-db",
-            "version": "2.2.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/websk/php-db.git",
-                "reference": "66c336274822663a1e9c1d91a34f907addd90f4e"
+                "reference": "d91d8bdb83e0f55d9ee14ebc23f989f09d1bfbe3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websk/php-db/zipball/66c336274822663a1e9c1d91a34f907addd90f4e",
-                "reference": "66c336274822663a1e9c1d91a34f907addd90f4e",
+                "url": "https://api.github.com/repos/websk/php-db/zipball/d91d8bdb83e0f55d9ee14ebc23f989f09d1bfbe3",
+                "reference": "d91d8bdb83e0f55d9ee14ebc23f989f09d1bfbe3",
                 "shasum": ""
             },
             "require": {
@@ -193,9 +193,9 @@
             "description": "DB Service library",
             "support": {
                 "issues": "https://github.com/websk/php-db/issues",
-                "source": "https://github.com/websk/php-db/tree/2.2.0"
+                "source": "https://github.com/websk/php-db/tree/3.0.0"
             },
-            "time": "2026-10-10T05:28:42+00:00"
+            "time": "2026-10-10T13:30:50+00:00"
         },
         {
             "name": "websk/php-utils",

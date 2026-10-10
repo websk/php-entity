@@ -2,7 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.0.0] - 2026-10-10
+## [3.0.0] - 2026-10-10
+
+This release follows 2.2.2 and uses a new major version because it changes
+public interfaces and upgrades the database dependency across a major version.
 
 ### Added
 
@@ -13,7 +16,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-- Updated `websk/php-cache` to 3.0, `websk/php-db` to 2.2, and `websk/php-utils` to 3.0.
+- Updated `websk/php-cache`, `websk/php-db`, and `websk/php-utils` to 3.0.
 - Scoped PSR-4 autoloading to the `WebSK\` namespace.
 - Added explicit parameter and return types to repository, service, weight, and magic-method contracts.
 - Normalized database IDs to integers and sanitized update field names.
